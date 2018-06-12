@@ -21,7 +21,17 @@
     },
     "autoload": {
         "psr-4": {
-        "Dawoea\\SteamApi\\": "src/Dawoea/SteamApi"
+            "Dawoea\\SteamApi\\": "src/Dawoea/SteamApi"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dawoea\\SteamApi\\SteamApiServiceProvider"
+            ],
+            "aliases": {
+                "Steam": "Dawoea\\SteamApi\\Facades\\SteamApi"
+            }
         }
     },
     "minimum-stability": "stable",
