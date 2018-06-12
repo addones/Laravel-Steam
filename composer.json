@@ -1,0 +1,33 @@
+{
+    "name": "addones/laravel-steam",
+    "description": "A steam-api client for Laravel 5",
+    "license": "MIT",
+    "authors": [
+        {
+        "name": "2er7",
+        "email": "ee@addones.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "laravel/framework": "^5.0",
+        "guzzlehttp/guzzle": "^6.0",
+        "nukacode/database": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.0",
+        "mockery/mockery": "0.9.3",
+        "orchestra/testbench": "~3.0"
+    },
+    "autoload": {
+        "psr-4": {
+        "Dawoea\\SteamApi\\": "src/Dawoea/SteamApi"
+        }
+    },
+    "minimum-stability": "stable",
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}

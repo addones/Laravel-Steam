@@ -1,0 +1,18 @@
+language: php
+
+php:
+    - 7.0
+
+notifications:
+    slack: addones:k6PapNYvdeY7aKbgKKzqTzhd
+
+matrix:
+    fast_finish: true
+
+before_script:
+    - composer install
+
+script:
+    - phpunit --coverage-clover=coverage.clover
+    - wget https://scrutinizer-ci.com/ocular.phar
+    - php ocular.phar code-coverage:upload  --format=php-clover coverage.clover
