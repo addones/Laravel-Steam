@@ -12,6 +12,10 @@ class App extends BaseContainer
 
     public $name;
 
+    public $age;
+
+    public $dlc;
+
     public $controllerSupport;
 
     public $description;
@@ -34,11 +38,17 @@ class App extends BaseContainer
 
     public $price;
 
+    public $packages;
+
     public $platforms;
 
     public $metacritic;
 
     public $categories;
+
+    public $images;
+
+    public $movies;
 
     public $genres;
 
@@ -49,6 +59,9 @@ class App extends BaseContainer
         $this->id                = $app->steam_appid;
         $this->type              = $app->type;
         $this->name              = $app->name;
+        $this->age               = $app->required_age;
+        $this->fullgame          = $this->checkIssetField($app, 'fullgame', 'None');
+        $this->dlc               = $this->checkIssetField($app, 'dlc', 'None');
         $this->controllerSupport = $this->checkIssetField($app, 'controller_support', 'None');
         $this->description       = $app->detailed_description;
         $this->about             = $app->about_the_game;
@@ -59,10 +72,13 @@ class App extends BaseContainer
         $this->legal             = $this->checkIssetField($app, 'legal_notice', 'None');
         $this->developers        = $this->checkIssetCollection($app, 'developers');
         $this->publishers        = new Collection($app->publishers);
-        $this->price             = $this->checkIssetField($app, 'price_overview', $this->getFakePriceObject());
+        $this->price             = $this->formatPriceObject($app);
+        $this->packages          = $this->checkIssetField($app, 'packages');
         $this->platforms         = $app->platforms;
         $this->metacritic        = $this->checkIssetField($app, 'metacritic', $this->getFakeMetacriticObject());
         $this->categories        = $this->checkIssetCollection($app, 'categories');
+        $this->images            = $this->checkIssetCollection($app, 'screenshots');
+        $this->movies            = $this->checkIssetField($app, 'movies');
         $this->genres            = $this->checkIssetCollection($app, 'genres');
         $this->release           = $app->release_date;
     }
@@ -71,23 +87,42 @@ class App extends BaseContainer
     {
         $object        = new \stdClass();
         $object->url   = null;
-        $object->score = 'No Score';
+        $object->score = '0';
 
         return $object;
     }
 
     protected function getFakePriceObject()
     {
-        $object        = new \stdClass();
-        $object->final = 'No price found';
+        $object          = new \stdClass();
+        $object->initial = '0';
+        $object->final   = '0';
 
         return $object;
     }
 
     protected function getFakeFullgameObject()
     {
-        $object = new \stdClass();
+        $object        = new \stdClass();
         $object->appid = null;
-        $object->name = 'No parent game found';
+        $object->name  = 'No parent game found';
     }
+
+    /**
+     * @param $app
+     *
+     * @return \stdClass
+     */
+    protected function formatPriceObject($app)
+    {
+        $price                    = $this->checkIssetField($app, 'price_overview', $this->getFakePriceObject());
+        $object                   = new \stdClass();
+        $object->currency         = $price->currency;
+        $object->initial          = $price->initial / 100;
+        $object->final            = $price->final / 100;
+        $object->discount_percent = $price->discount_percent;
+
+        return $object;
+    }
+
 }
