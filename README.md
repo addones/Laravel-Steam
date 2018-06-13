@@ -4,13 +4,12 @@
     <a href="https://travis-ci.com/addones/Laravel-Steam"><img src="https://img.shields.io/travis/addones/Laravel-Steam.svg?style=flat-square" alt="Build Status"></a>
     <a href="https://github.com/addones/Laravel-Steam/releases"><img src="https://img.shields.io/github/release/addones/Laravel-Steam.svg?style=flat-square" alt="releases status"></a>
     <a href="https://packagist.org/packages/addones/Laravel-Steam"><img src="https://img.shields.io/packagist/vpre/laravel/laravel-steam.svg?style=flat-square" alt="Latest Stable Version"></a>
-    <a href="https://packagist.org/packages/addones/Laravel-Steam"><img src="https://img.shields.io/packagist/dt/addones/laravel-steam.svg?style=flat-square" alt="Total Downloads"></a>
-	<a href="https://github.com/addones/Laravel-Steam/blob/master/LICENSE"><img src="https://img.shields.io/github/license/addones/Laravel-Steam.svg?style=flat-square" alt="license"></a>
+    <a href="https://scrutinizer-ci.com/g/addones/Laravel-Steam"><img src="https://img.shields.io/scrutinizer/coverage/g/addones/Laravel-Steam.svg?style=flat-square" alt="Scrutinizer Coverage"></a>
+    <a href="https://github.com/addones/Laravel-Steam/blob/master/LICENSE"><img src="https://img.shields.io/github/license/addones/Laravel-Steam.svg?style=flat-square" alt="license"></a>
 </p>
 
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contributors](#contributors)
+- [Documentation](#documentation)
 
 This package provides an easy way to get details from the steam api service.  The services it can access are:
 
@@ -22,7 +21,29 @@ This package provides an easy way to get details from the steam api service.  Th
 
 ## Installation
 
-You can pull in the package via composer:
+First of all, You need get your API key from [Steam](https://steamcommunity.com/dev/apikey)
+
+### in Laravel 5.5 and up
+
+```
+composer require addones/laravel-steam
+```
+
+Publish the config file.
+
+```
+php artisan vendor:publish
+```
+
+Lastly, you can using Steam class in controller use namespace top of that file
+
+```php
+use Steam;
+```
+
+🎉
+
+### in Laravel 5.0 - 5.4
 
 ```
 composer require addones/laravel-steam
@@ -36,17 +57,19 @@ Dawoea\SteamApi\SteamApiServiceProvider::class,
 
 > The alias to Steam is already handled by the package.
 
-Lastly, publish the config file.  You can get your API key from [Steam](https://steamcommunity.com/dev/apikey)
+And, publish the config file.
 
 ```
 php artisan vendor:publish
 ```
 
-And you can using Steam class in controller use namespace top of that file
+Lastly, you can using Steam class in controller use namespace top of that file
 
 ```php
 use Steam;
 ```
+
+🎉
 
 ## Documentation
 
