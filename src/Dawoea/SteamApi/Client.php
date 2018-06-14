@@ -265,9 +265,6 @@ class Client
     {
         $apiKey = \Config::get('steam-api.key');
 
-        if ($apiKey == 'YOUR-API-KEY') {
-            throw new Exceptions\InvalidApiKeyException();
-        }
         if (is_null($apiKey) || $apiKey == '' || $apiKey == []) {
             $apiKey = getenv('apiKey');
         }
