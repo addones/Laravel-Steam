@@ -28,14 +28,14 @@ class Package extends Client
         ];
         // Get the client
         $client = $this->setUpClient($arguments);
-        $packs = $this->convertToObjects($client);
+        $packs = $this->convertToObjects($client, $packIds);
 
         return $packs;
     }
 
-    protected function convertToObjects($package)
+    protected function convertToObjects($package, $packIds)
     {
-        $convertedPacks = $this->convertPacks($package);
+        $convertedPacks = $this->convertPacks($package, $packIds);
         $package = $this->sortObjects($convertedPacks);
 
         return $package;
@@ -46,12 +46,12 @@ class Package extends Client
      *
      * @return Collection
      */
-    protected function convertPacks($packages)
+    protected function convertPacks($packages, $packIds)
     {
         $convertedPacks = new Collection();
         foreach ($packages as $package) {
             if (isset($package->data)) {
-                $convertedPacks->add(new PackageContainer($package->data));
+                $convertedPacks->add(new PackageContainer($package->data, $packIds));
             }
         }
 
