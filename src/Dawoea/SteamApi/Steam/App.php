@@ -3,34 +3,34 @@
 namespace Dawoea\SteamApi\Steam;
 
 use Dawoea\SteamApi\Client;
-use NukaCode\Database\Collection;
 use Dawoea\SteamApi\Containers\App as AppContainer;
+use NukaCode\Database\Collection;
 
 class App extends Client
 {
     public function __construct()
     {
         parent::__construct();
-        $this->url       = 'https://store.steampowered.com/';
+        $this->url = 'https://store.steampowered.com/';
         $this->interface = 'api';
     }
 
     public function appDetails($appIds, $cc = 'us', $language = 'english')
     {
         // Set up the api details
-        $this->method  = 'appdetails';
+        $this->method = 'appdetails';
         $this->version = null;
 
         // Set up the arguments
         $arguments = [
             'appids' => $appIds,
             'cc'     => $cc,
-            'l'      => $language
+            'l'      => $language,
         ];
 
         // Get the client
         $client = $this->setUpClient($arguments);
-        $apps   = $this->convertToObjects($client);
+        $apps = $this->convertToObjects($client);
 
         return $apps;
     }
@@ -38,10 +38,10 @@ class App extends Client
     public function GetAppList()
     {
         // Set up the api details
-        $this->url       = 'https://api.steampowered.com/';
+        $this->url = 'https://api.steampowered.com/';
         $this->interface = 'ISteamApps';
-        $this->method    = __FUNCTION__;
-        $this->version   = 'v0002';
+        $this->method = __FUNCTION__;
+        $this->version = 'v0002';
 
         // Get the client
         $client = $this->setUpClient();

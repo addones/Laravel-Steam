@@ -15,7 +15,7 @@ abstract class BaseContainer
      */
     protected function checkIsNullField($app, $field, $value = null)
     {
-        return ! is_null($app->$field) ? $app->$field : $value;
+        return !is_null($app->$field) ? $app->$field : $value;
     }
 
     /**
@@ -49,7 +49,7 @@ abstract class BaseContainer
      */
     protected function getImageForAvatar($image)
     {
-        return '<img src="' . $image . '" />';
+        return '<img src="'.$image.'" />';
     }
 
     /**
@@ -64,10 +64,10 @@ abstract class BaseContainer
     protected function pluralize($word, $count)
     {
         if ((int) $count === 1) {
-            return $word .' ';
+            return $word.' ';
         }
 
-        return $word .'s ';
+        return $word.'s ';
     }
 
     /**
@@ -82,32 +82,32 @@ abstract class BaseContainer
         $seconds = $minutes * 60;
 
         $secondsInAMinute = 60;
-        $secondsInAnHour  = 60 * $secondsInAMinute;
-        $secondsInADay    = 24 * $secondsInAnHour;
+        $secondsInAnHour = 60 * $secondsInAMinute;
+        $secondsInADay = 24 * $secondsInAnHour;
 
         // extract days
         $days = floor($seconds / $secondsInADay);
 
         // extract hours
         $hourSeconds = $seconds % $secondsInADay;
-        $hours       = floor($hourSeconds / $secondsInAnHour);
+        $hours = floor($hourSeconds / $secondsInAnHour);
 
         // extract minutes
         $minuteSeconds = $hourSeconds % $secondsInAnHour;
-        $minutes       = floor($minuteSeconds / $secondsInAMinute);
+        $minutes = floor($minuteSeconds / $secondsInAMinute);
 
         // return the final string
         $output = '';
 
         if ($days > 0) {
-            $output .= $days . ' ' . $this->pluralize('day', $days);
+            $output .= $days.' '.$this->pluralize('day', $days);
         }
 
         if ($hours > 0) {
-            $output .= $hours . ' ' . $this->pluralize('hour', $hours);
+            $output .= $hours.' '.$this->pluralize('hour', $hours);
         }
 
-        $output .= $minutes . ' ' . $this->pluralize('minute', $minutes);
+        $output .= $minutes.' '.$this->pluralize('minute', $minutes);
 
         return $output;
     }

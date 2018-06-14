@@ -20,12 +20,12 @@ class Achievement
 
     public function __construct($achievement)
     {
-        $this->apiName         = (string) $achievement->apiname;
-        $this->achieved        = (int)(string) $achievement['closed'];
-        $this->name            = (string) $achievement->name;
-        $this->description     = (string) $achievement->description;
-        $this->icon            = (string) $achievement->iconClosed;
-        $this->iconGray        = (string) $achievement->iconOpen;
-        $this->unlockTimestamp = isset($achievement->unlockTimestamp) ? (int)(string) $achievement->unlockTimestamp : null;
+        $this->apiName = (string) $achievement->apiname;
+        $this->achieved = (int) (string) $achievement['closed'];
+        $this->name = (string) $achievement->name;
+        $this->description = (string) $achievement->description;
+        $this->icon = (string) $achievement->iconClosed;
+        $this->iconGray = (string) $achievement->iconOpen;
+        $this->unlockTimestamp = isset($achievement->unlockTimestamp) ? (int) (string) $achievement->unlockTimestamp : null;
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-require_once('BaseTester.php');
+require_once 'BaseTester.php';
 
 /** @group App */
-class AppTest extends BaseTester {
-
+class AppTest extends BaseTester
+{
     /** @test */
     public function it_gets_details_for_an_app_by_id()
     {

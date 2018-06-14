@@ -48,10 +48,10 @@ trait SteamId
 
     protected function setUpFormatted()
     {
-        $this->formatted                = new \stdClass();
+        $this->formatted = new \stdClass();
         $this->formatted->{self::$ID32} = null;
         $this->formatted->{self::$ID64} = null;
-        $this->formatted->{self::$ID3}  = null;
+        $this->formatted->{self::$ID3} = null;
     }
 
     private function convertToAll($id)
@@ -70,22 +70,22 @@ trait SteamId
 
     private function convertToID32()
     {
-        $z                              = bcdiv($this->rawValue, '2', 0);
-        $y                              = bcmul($z, '2', 0);
-        $y                              = bcsub($this->rawValue, $y, 0);
-        $formatted                      = "STEAM_1:$y:$z";
+        $z = bcdiv($this->rawValue, '2', 0);
+        $y = bcmul($z, '2', 0);
+        $y = bcsub($this->rawValue, $y, 0);
+        $formatted = "STEAM_1:$y:$z";
         $this->formatted->{self::$ID32} = $formatted;
     }
 
     private function convertToID64()
     {
-        $formatted                      = bcadd($this->rawValue, self::$id64Base, 0);
+        $formatted = bcadd($this->rawValue, self::$id64Base, 0);
         $this->formatted->{self::$ID64} = $formatted;
     }
 
     private function convertToID3()
     {
-        $formatted                     = "[U:1:$this->rawValue]";
+        $formatted = "[U:1:$this->rawValue]";
         $this->formatted->{self::$ID3} = $formatted;
     }
 
@@ -103,11 +103,11 @@ trait SteamId
             return ['ID3', $matches];
         }
 
-        throw new UnrecognizedId('Id [' . $id . '] is not recognized as a steam id.');
+        throw new UnrecognizedId('Id ['.$id.'] is not recognized as a steam id.');
     }
 
     /**
-     * Get a raw value from any type of steam id
+     * Get a raw value from any type of steam id.
      *
      * @param $id
      * @param $type
@@ -137,5 +137,4 @@ trait SteamId
                 break;
         }
     }
-
 }

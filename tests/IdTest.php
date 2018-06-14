@@ -1,8 +1,8 @@
 <?php
 
 /** @group Id */
-class IdTest extends BaseTester {
-
+class IdTest extends BaseTester
+{
     /** @test */
     public function it_converts_an_id()
     {
@@ -12,5 +12,4 @@ class IdTest extends BaseTester {
         $this->assertEquals($this->id64, $ids->id64);
         $this->assertEquals($this->id3, $ids->id3);
     }
-
 }

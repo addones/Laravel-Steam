@@ -3,9 +3,9 @@
 namespace Dawoea\SteamApi\Steam;
 
 use Dawoea\SteamApi\Client;
-use NukaCode\Database\Collection;
 use Dawoea\SteamApi\Containers\Game;
 use Dawoea\SteamApi\Containers\Player\Level;
+use NukaCode\Database\Collection;
 
 class Player extends Client
 {
@@ -14,7 +14,7 @@ class Player extends Client
         parent::__construct();
         $this->interface = 'IPlayerService';
         $this->isService = true;
-        $this->steamId   = $steamId;
+        $this->steamId = $steamId;
     }
 
     public function GetSteamLevel()
@@ -85,7 +85,7 @@ class Player extends Client
             $arguments['include_played_free_games'] = $includePlayedFreeGames;
         }
         if (count($appIdsFilter) > 0) {
-            $arguments['appids_filter'] = (array)$appIdsFilter;
+            $arguments['appids_filter'] = (array) $appIdsFilter;
         }
 
         // Get the client
@@ -104,7 +104,7 @@ class Player extends Client
 
         // Set up the arguments
         $arguments = ['steamId' => $this->steamId];
-        if (! is_null($count)) {
+        if (!is_null($count)) {
             $arguments['count'] = $count;
         }
 
@@ -117,8 +117,6 @@ class Player extends Client
 
             return $games;
         }
-
-        return null;
     }
 
     public function IsPlayingSharedGame($appIdPlaying)
@@ -149,7 +147,7 @@ class Player extends Client
 
     private function convertGames($games)
     {
-        $convertedGames = new Collection;
+        $convertedGames = new Collection();
 
         foreach ($games as $game) {
             $convertedGames->add(new Game($game));

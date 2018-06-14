@@ -21,7 +21,7 @@ class SteamApiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([__DIR__ . '/../../config/config.php' => config_path('steam-api.php')]);
+        $this->publishes([__DIR__.'/../../config/config.php' => config_path('steam-api.php')]);
     }
 
     /**
@@ -34,7 +34,7 @@ class SteamApiServiceProvider extends ServiceProvider
         $this->registerAlias();
 
         $this->app->singleton('steam-api', function () {
-            return new Client;
+            return new Client();
         });
     }
 

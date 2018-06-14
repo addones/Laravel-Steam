@@ -17,19 +17,19 @@ class Id
     public $steamId;
 
     /**
-     * @param integer $id
+     * @param int $id
      */
-    function __construct($id)
+    public function __construct($id)
     {
-        $client = new Client;
+        $client = new Client();
 
         $steamIds = $client->convertId($id);
 
         $this->id32 = $steamIds->id32;
         $this->id64 = $steamIds->id64;
-        $this->id3  = $steamIds->id3;
+        $this->id3 = $steamIds->id3;
 
-        $this->steamId     = $this->id64;
+        $this->steamId = $this->id64;
         $this->communityId = $this->id32;
     }
 }

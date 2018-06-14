@@ -1,8 +1,8 @@
 <?php
 
 /** @group News */
-class NewsTest extends BaseTester {
-
+class NewsTest extends BaseTester
+{
     /** @test */
     public function it_gets_news_by_app_id()
     {
@@ -14,7 +14,7 @@ class NewsTest extends BaseTester {
         $this->assertGreaterThan(0, count($newsArticle->newsitems));
 
         $attributes = [
-            'gid', 'title', 'url', 'is_external_url', 'author', 'contents', 'feedlabel', 'date', 'feedname'
+            'gid', 'title', 'url', 'is_external_url', 'author', 'contents', 'feedlabel', 'date', 'feedname',
         ];
         $this->assertObjectHasAttributes($attributes, $newsArticle->newsitems[0]);
 
@@ -46,5 +46,4 @@ class NewsTest extends BaseTester {
             }
         }
     }
-
 }

@@ -3,17 +3,17 @@
 namespace Dawoea\SteamApi\Steam;
 
 use Dawoea\SteamApi\Client;
-use NukaCode\Database\Collection;
 use Dawoea\SteamApi\Containers\Item as ItemContainer;
 use Dawoea\SteamApi\Exceptions\ApiCallFailedException;
 use Dawoea\SteamApi\Inventory;
+use NukaCode\Database\Collection;
 
 class Item extends Client
 {
     public function __construct()
     {
         parent::__construct();
-        $this->url       = 'https://store.steampowered.com/';
+        $this->url = 'https://store.steampowered.com/';
         $this->isService = true;
         $this->interface = 'api';
     }
@@ -21,10 +21,10 @@ class Item extends Client
     public function GetPlayerItems($appId, $steamId)
     {
         // Set up the api details
-        $this->url       = 'https://api.steampowered.com/';
-        $this->interface = 'IEconItems_' . $appId;
-        $this->method    = __FUNCTION__;
-        $this->version   = 'v0001';
+        $this->url = 'https://api.steampowered.com/';
+        $this->interface = 'IEconItems_'.$appId;
+        $this->method = __FUNCTION__;
+        $this->version = 'v0001';
 
         $arguments = ['steamId' => $steamId];
 
@@ -33,7 +33,7 @@ class Item extends Client
             $client = $this->setUpClient($arguments);
         } catch (ApiCallFailedException $exception) {
             // No items exist for this game.
-            return null;
+            return;
         }
 
         // Clean up the items
