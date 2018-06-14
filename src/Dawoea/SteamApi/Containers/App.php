@@ -7,51 +7,28 @@ use NukaCode\Database\Collection;
 class App extends BaseContainer
 {
     public $id;
-
     public $type;
-
     public $name;
-
     public $age;
-
     public $dlc;
-
     public $controllerSupport;
-
     public $description;
-
     public $about;
-
     public $fullgame;
-
     public $header;
-
     public $website;
-
     public $pcRequirements;
-
     public $legal;
-
     public $developers;
-
     public $publishers;
-
     public $price;
-
     public $packages;
-
     public $platforms;
-
     public $metacritic;
-
     public $categories;
-
     public $images;
-
     public $movies;
-
     public $genres;
-
     public $release;
 
     public function __construct($app)
@@ -72,7 +49,7 @@ class App extends BaseContainer
         $this->legal = $this->checkIssetField($app, 'legal_notice', 'None');
         $this->developers = $this->checkIssetCollection($app, 'developers');
         $this->publishers = new Collection($app->publishers);
-        $this->price = $this->formatPriceObject($app);
+        $this->price = $this->formatPriceObject($app, 'price_overview');
         $this->packages = $this->checkIssetField($app, 'packages');
         $this->platforms = $app->platforms;
         $this->metacritic = $this->checkIssetField($app, 'metacritic', $this->getFakeMetacriticObject());
@@ -92,36 +69,10 @@ class App extends BaseContainer
         return $object;
     }
 
-    protected function getFakePriceObject()
-    {
-        $object = new \stdClass();
-        $object->initial = '0';
-        $object->final = '0';
-
-        return $object;
-    }
-
     protected function getFakeFullgameObject()
     {
         $object = new \stdClass();
         $object->appid = null;
         $object->name = 'No parent game found';
-    }
-
-    /**
-     * @param $app
-     *
-     * @return \stdClass
-     */
-    protected function formatPriceObject($app)
-    {
-        $price = $this->checkIssetField($app, 'price_overview', $this->getFakePriceObject());
-        $object = new \stdClass();
-        $object->currency = $price->currency;
-        $object->initial = $price->initial / 100;
-        $object->final = $price->final / 100;
-        $object->discount_percent = $price->discount_percent;
-
-        return $object;
     }
 }
