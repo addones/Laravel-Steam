@@ -1,8 +1,8 @@
 <?php
 
 /** @group UserStats */
-class UserStatsTest extends BaseTester {
-
+class UserStatsTest extends BaseTester
+{
     /** @test */
     public function it_returns_null_when_there_are_no_achievements_for_a_game()
     {
@@ -66,5 +66,4 @@ class UserStatsTest extends BaseTester {
         $attributes = ['gameName', 'gameVersion', 'availableGameStats'];
         $this->assertObjectHasAttributes($attributes, $stats->game);
     }
-
 }

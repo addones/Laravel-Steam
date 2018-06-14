@@ -1,8 +1,8 @@
 <?php
 
 /** @group Player */
-class PlayerTest extends BaseTester {
-
+class PlayerTest extends BaseTester
+{
     /** @test */
     public function it_gets_the_steam_level_by_user_id()
     {
@@ -20,7 +20,7 @@ class PlayerTest extends BaseTester {
 
         $attributes = [
             'playerXp', 'playerLevel', 'xpToLevelUp', 'xpForCurrentLevel', 'currentLevelFloor',
-            'currentLevelCeiling', 'percentThroughLevel'
+            'currentLevelCeiling', 'percentThroughLevel',
         ];
         $this->assertObjectHasAttributes($attributes, $details);
     }
@@ -58,7 +58,7 @@ class PlayerTest extends BaseTester {
 
         $attributes = [
             'appId', 'name', 'playtimeTwoWeeks', 'playtimeTwoWeeksReadable', 'playtimeForever', 'playtimeForeverReadable',
-            'icon', 'logo', 'header', 'hasCommunityVisibleStats'
+            'icon', 'logo', 'header', 'hasCommunityVisibleStats',
         ];
         $this->assertObjectHasAttributes($attributes, $games->first());
     }
@@ -73,7 +73,7 @@ class PlayerTest extends BaseTester {
 
         $attributes = [
             'appId', 'name', 'playtimeTwoWeeks', 'playtimeTwoWeeksReadable', 'playtimeForever', 'playtimeForeverReadable',
-            'icon', 'logo', 'header', 'hasCommunityVisibleStats'
+            'icon', 'logo', 'header', 'hasCommunityVisibleStats',
         ];
         $this->assertObjectHasAttributes($attributes, $games->first());
 
@@ -93,7 +93,7 @@ class PlayerTest extends BaseTester {
 
         $attributes = [
             'appId', 'name', 'playtimeTwoWeeks', 'playtimeTwoWeeksReadable', 'playtimeForever', 'playtimeForeverReadable',
-            'icon', 'logo', 'header', 'hasCommunityVisibleStats'
+            'icon', 'logo', 'header', 'hasCommunityVisibleStats',
         ];
         $this->assertObjectHasAttributes($attributes, $games->first());
     }
@@ -108,7 +108,7 @@ class PlayerTest extends BaseTester {
 
         $attributes = [
             'appId', 'name', 'playtimeTwoWeeks', 'playtimeTwoWeeksReadable', 'playtimeForever', 'playtimeForeverReadable',
-            'icon', 'logo', 'header', 'hasCommunityVisibleStats'
+            'icon', 'logo', 'header', 'hasCommunityVisibleStats',
         ];
         $this->assertObjectHasAttributes($attributes, $games->first());
     }
@@ -124,7 +124,7 @@ class PlayerTest extends BaseTester {
 
         $attributes = [
             'appId', 'name', 'playtimeTwoWeeks', 'playtimeTwoWeeksReadable', 'playtimeForever', 'playtimeForeverReadable',
-            'icon', 'logo', 'header', 'hasCommunityVisibleStats'
+            'icon', 'logo', 'header', 'hasCommunityVisibleStats',
         ];
         $this->assertObjectHasAttributes($attributes, $games->first());
     }

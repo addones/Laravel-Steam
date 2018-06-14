@@ -2,14 +2,14 @@
 
 namespace Dawoea\SteamApi;
 
-use stdClass;
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Psr7\Request;
-use Exception;
-use GuzzleHttp\Exception\ClientErrorResponseException;
-use GuzzleHttp\Exception\ServerErrorResponseException;
 use Dawoea\SteamApi\Exceptions\ApiCallFailedException;
 use Dawoea\SteamApi\Exceptions\ClassNotFoundException;
+use Exception;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\ClientErrorResponseException;
+use GuzzleHttp\Exception\ServerErrorResponseException;
+use GuzzleHttp\Psr7\Request;
+use stdClass;
 
 /**
  * @method \Dawoea\SteamApi\Steam\News       news()
@@ -68,16 +68,16 @@ class Client
     /**
      * @param string $arguments
      *
-     * @return string
-     *
      * @throws ApiArgumentRequired
      * @throws ApiCallFailedException
+     *
+     * @return string
      */
     protected function setUpService($arguments = null)
     {
         // Services have a different url syntax
         if ($arguments == null) {
-            throw new ApiArgumentRequired;
+            throw new ApiArgumentRequired();
         }
 
         $parameters = [
@@ -92,7 +92,7 @@ class Client
         $parameters = http_build_query($parameters);
 
         // Send the request and get the results
-        $request  = new Request('GET', $steamUrl . '?' . $parameters);
+        $request = new Request('GET', $steamUrl.'?'.$parameters);
         $response = $this->sendRequest($request);
 
         // Pass the results back
@@ -101,15 +101,15 @@ class Client
 
     protected function setUpClient(array $arguments = [])
     {
-        $versionFlag = ! is_null($this->version);
-        $steamUrl    = $this->buildUrl($versionFlag);
+        $versionFlag = !is_null($this->version);
+        $steamUrl = $this->buildUrl($versionFlag);
 
         $parameters = [
             'key'    => $this->apiKey,
             'format' => $this->apiFormat,
         ];
 
-        if (! empty($arguments)) {
+        if (!empty($arguments)) {
             $parameters = array_merge($arguments, $parameters);
         }
 
@@ -117,7 +117,7 @@ class Client
         $parameters = http_build_query($parameters);
 
         // Send the request and get the results
-        $request  = new Request('GET', $steamUrl . '?' . $parameters);
+        $request = new Request('GET', $steamUrl.'?'.$parameters);
         $response = $this->sendRequest($request);
 
         // Pass the results back
@@ -132,12 +132,12 @@ class Client
         $parameters = http_build_query($arguments);
 
         // Pass the results back
-        return simplexml_load_file($steamUrl . '?' . $parameters);
+        return simplexml_load_file($steamUrl.'?'.$parameters);
         libxml_use_internal_errors(true);
-        $result = simplexml_load_file($steamUrl . '?' . $parameters);
+        $result = simplexml_load_file($steamUrl.'?'.$parameters);
 
-        if (! $result) {
-            return null;
+        if (!$result) {
+            return;
         }
 
         return $result;
@@ -159,8 +159,9 @@ class Client
     /**
      * @param \GuzzleHttp\Psr7\Request $request
      *
-     * @return \stdClass
      * @throws \Dawoea\SteamApi\Exceptions\ApiCallFailedException
+     *
+     * @return \stdClass
      */
     protected function sendRequest(Request $request)
     {
@@ -168,7 +169,7 @@ class Client
         try {
             $response = $this->client->send($request);
 
-            $result       = new stdClass();
+            $result = new stdClass();
             $result->code = $response->getStatusCode();
             $result->body = json_decode($response->getBody(true));
         } catch (ClientErrorResponseException $e) {
@@ -186,11 +187,11 @@ class Client
     private function buildUrl($version = false)
     {
         // Set up the basic url
-        $url = $this->url . $this->interface . '/' . $this->method . '/';
+        $url = $this->url.$this->interface.'/'.$this->method.'/';
 
         // If we have a version, add it
         if ($version) {
-            return $url . $this->version . '/';
+            return $url.$this->version.'/';
         }
 
         return $url;
@@ -199,23 +200,23 @@ class Client
     public function __call($name, $arguments)
     {
         // Handle a steamId being passed
-        if (! empty($arguments) && count($arguments) == 1) {
+        if (!empty($arguments) && count($arguments) == 1) {
             $this->steamId = $arguments[0];
 
             $this->convertSteamIdTo64();
         }
 
         // Inside the root steam directory
-        $class      = ucfirst($name);
-        $steamClass = '\Dawoea\SteamApi\Steam\\' . $class;
+        $class = ucfirst($name);
+        $steamClass = '\Dawoea\SteamApi\Steam\\'.$class;
 
         if (class_exists($steamClass)) {
             return new $steamClass($this->steamId);
         }
 
         // Inside a nested directory
-        $class      = implode('\\', preg_split('/(?=[A-Z])/', $class, -1, PREG_SPLIT_NO_EMPTY));
-        $steamClass = '\Dawoea\SteamApi\Steam\\' . $class;
+        $class = implode('\\', preg_split('/(?=[A-Z])/', $class, -1, PREG_SPLIT_NO_EMPTY));
+        $steamClass = '\Dawoea\SteamApi\Steam\\'.$class;
 
         if (class_exists($steamClass)) {
             return new $steamClass($this->steamId);
@@ -243,7 +244,7 @@ class Client
      */
     protected function setApiDetails($method, $version)
     {
-        $this->method  = $method;
+        $this->method = $method;
         $this->version = $version;
     }
 
@@ -258,8 +259,9 @@ class Client
     }
 
     /**
-     * @return string
      * @throws Exceptions\InvalidApiKeyException
+     *
+     * @return string
      */
     protected function getApiKey()
     {

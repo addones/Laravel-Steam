@@ -3,32 +3,32 @@
 namespace Dawoea\SteamApi\Steam;
 
 use Dawoea\SteamApi\Client;
-use NukaCode\Database\Collection;
 use Dawoea\SteamApi\Containers\Package as PackageContainer;
+use NukaCode\Database\Collection;
 
 class Package extends Client
 {
     public function __construct()
     {
         parent::__construct();
-        $this->url       = 'https://store.steampowered.com/';
+        $this->url = 'https://store.steampowered.com/';
         $this->interface = 'api';
     }
 
     public function packageDetails($packIds, $cc = 'us', $language = 'english')
     {
         // Set up the api details
-        $this->method  = 'packagedetails';
+        $this->method = 'packagedetails';
         $this->version = null;
         // Set up the arguments
         $arguments = [
             'packageids' => $packIds,
             'cc'         => $cc,
-            'l'          => $language
+            'l'          => $language,
         ];
         // Get the client
         $client = $this->setUpClient($arguments);
-        $packs  = $this->convertToObjects($client);
+        $packs = $this->convertToObjects($client);
 
         return $packs;
     }
@@ -36,7 +36,7 @@ class Package extends Client
     protected function convertToObjects($package)
     {
         $convertedPacks = $this->convertPacks($package);
-        $package        = $this->sortObjects($convertedPacks);
+        $package = $this->sortObjects($convertedPacks);
 
         return $package;
     }

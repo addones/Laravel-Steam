@@ -11,6 +11,6 @@ class Inventory
     public function __construct($slots, $items)
     {
         $this->numberOfBackpackSlots = $slots;
-        $this->items                 = $items;
+        $this->items = $items;
     }
 }

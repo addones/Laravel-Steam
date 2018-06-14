@@ -3,9 +3,9 @@
 namespace Dawoea\SteamApi\Containers;
 
 use Dawoea\SteamApi\Client;
-use NukaCode\Database\Collection;
 use Dawoea\SteamApi\Containers\Group\Details;
 use Dawoea\SteamApi\Containers\Group\MemberDetails;
+use NukaCode\Database\Collection;
 
 class Group
 {
@@ -22,17 +22,17 @@ class Group
     /**
      * @param \SimpleXMLElement $group
      */
-    function __construct($group)
+    public function __construct($group)
     {
-        $this->groupID64      = (string)$group->groupID64;
-        $this->groupDetails   = new Details($group->groupDetails);
-        $this->memberDetails  = new MemberDetails($group->groupDetails);
-        $this->startingMember = (int)(string)$group->startingMember;
+        $this->groupID64 = (string) $group->groupID64;
+        $this->groupDetails = new Details($group->groupDetails);
+        $this->memberDetails = new MemberDetails($group->groupDetails);
+        $this->startingMember = (int) (string) $group->startingMember;
 
-        $this->members = new Collection;
+        $this->members = new Collection();
 
         foreach ($group->members->steamID64 as $member) {
-            $this->members->add((new Client)->convertId((string)$member));
+            $this->members->add((new Client())->convertId((string) $member));
         }
     }
 }

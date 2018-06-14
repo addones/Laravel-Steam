@@ -18,7 +18,7 @@ class Group extends Client
             $this->url = 'https://steamcommunity.com/groups/';
         }
 
-        $this->url = $this->url . $group;
+        $this->url = $this->url.$group;
 
         // Set up the arguments
         $arguments = [

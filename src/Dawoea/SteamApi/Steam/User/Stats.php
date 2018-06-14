@@ -11,7 +11,7 @@ class Stats extends Client
     {
         parent::__construct();
         $this->interface = 'ISteamUserStats';
-        $this->steamId   = $steamId;
+        $this->steamId = $steamId;
     }
 
     /**
@@ -24,7 +24,7 @@ class Stats extends Client
     public function GetPlayerAchievementsAPI($appId)
     {
         // Set up the api details
-        $this->method  = 'GetPlayerAchievementsAPI';
+        $this->method = 'GetPlayerAchievementsAPI';
         $this->version = 'v0001';
 
         // Set up the arguments
@@ -39,11 +39,11 @@ class Stats extends Client
 
         // Make sure the game has achievements
         if ($stats == null || $stats->game->availableGameStats->achievements == null) {
-            return null;
+            return;
         }
 
         $client = $this->setUpClient($arguments)->playerstats;
-        $stats  = $stats->game->availableGameStats->achievements;
+        $stats = $stats->game->availableGameStats->achievements;
 
         // Clean up the games
         $achievements = $this->convertToObjects($client->achievements, $stats);
@@ -55,7 +55,7 @@ class Stats extends Client
     {
         // Set up the api details
         $this->interface = null;
-        $this->method    = 'achievements';
+        $this->method = 'achievements';
 
         if (is_numeric($this->steamId)) {
             $this->url = 'https://steamcommunity.com/profiles/';
@@ -63,7 +63,7 @@ class Stats extends Client
             $this->url = 'https://steamcommunity.com/id/';
         }
 
-        $this->url = $this->url . $this->steamId . '/stats/' . $appId;
+        $this->url = $this->url.$this->steamId.'/stats/'.$appId;
 
         // Set up the arguments
         $arguments = [
@@ -93,19 +93,19 @@ class Stats extends Client
 
                     return $achievements;
                 } catch (\Exception $exception) {
-                    return null;
+                    return;
                 }
             }
 
             // If the name and ID fail, return null.
-            return null;
+            return;
         }
     }
 
     public function GetGlobalAchievementPercentagesForApp($gameId)
     {
         // Set up the api details
-        $this->method  = __FUNCTION__;
+        $this->method = __FUNCTION__;
         $this->version = 'v0002';
 
         // Set up the arguments
@@ -129,7 +129,7 @@ class Stats extends Client
     public function GetUserStatsForGame($appId, $all = false)
     {
         // Set up the api details
-        $this->method  = __FUNCTION__;
+        $this->method = __FUNCTION__;
         $this->version = 'v0002';
 
         // Set up the arguments
@@ -160,7 +160,7 @@ class Stats extends Client
     public function GetSchemaForGame($appId)
     {
         // Set up the api details
-        $this->method  = __FUNCTION__;
+        $this->method = __FUNCTION__;
         $this->version = 'v0002';
 
         // Set up the arguments

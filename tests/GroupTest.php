@@ -1,8 +1,8 @@
 <?php
 
 /** @group Group */
-class GroupTest extends BaseTester {
-
+class GroupTest extends BaseTester
+{
     /** @test */
     public function it_gets_a_summary_of_a_group_by_id()
     {
@@ -31,5 +31,4 @@ class GroupTest extends BaseTester {
         $this->assertInstanceOf('Dawoea\SteamApi\Containers\Group\MemberDetails', $group->memberDetails);
         $this->assertInstanceOf('NukaCode\Database\Collection', $group->members);
     }
-
 }

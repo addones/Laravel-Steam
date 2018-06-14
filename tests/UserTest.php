@@ -1,8 +1,8 @@
 <?php
 
 /** @group User */
-class UserTest extends BaseTester {
-
+class UserTest extends BaseTester
+{
     /** @test */
     public function it_accepts_an_array_of_steam_ids()
     {

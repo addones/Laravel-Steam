@@ -1,21 +1,21 @@
 <?php
 
-use Orchestra\Testbench\TestCase;
 use Dawoea\SteamApi\Client;
+use Orchestra\Testbench\TestCase;
 
-class BaseTester extends TestCase {
+class BaseTester extends TestCase
+{
+    protected $id32 = 'STEAM_1:1:31085444';
 
-    protected $id32      = 'STEAM_1:1:31085444';
+    protected $id64 = 76561198022436617;
 
-    protected $id64      = 76561198022436617;
+    protected $id3 = '[U:1:62170889]';
 
-    protected $id3       = '[U:1:62170889]';
+    protected $altId64 = 76561197979958413;
 
-    protected $altId64   = 76561197979958413;
+    protected $appId = 620;
 
-    protected $appId     = 620;
-
-    protected $groupId   = 103582791429521412;
+    protected $groupId = 103582791429521412;
 
     protected $groupName = 'Valve';
 
@@ -42,7 +42,7 @@ class BaseTester extends TestCase {
     protected function checkSteamIdsProperties($steamId)
     {
         $attributes = [
-            'id32', 'id64', 'id3', 'communityId', 'steamId'
+            'id32', 'id64', 'id3', 'communityId', 'steamId',
         ];
         $this->assertObjectHasAttributes($attributes, $steamId);
     }
@@ -50,7 +50,7 @@ class BaseTester extends TestCase {
     protected function checkPlayerProperties($friendsList)
     {
         $attributes = [
-            'steamId', 'steamIds', 'communityVisibilityState', 'profileState', 'lastLogoff', 'profileUrl', 'realName', 'primaryClanId', 'timecreated'
+            'steamId', 'steamIds', 'communityVisibilityState', 'profileState', 'lastLogoff', 'profileUrl', 'realName', 'primaryClanId', 'timecreated',
         ];
         $this->assertObjectHasAttributes($attributes, $friendsList[0]);
 
@@ -60,12 +60,12 @@ class BaseTester extends TestCase {
         $this->assertObjectHasAttributes($attributes, $friendsList[0]);
 
         $attributes = [
-            'personaName', 'personaState', 'personaStateId', 'personaStateFlags'
+            'personaName', 'personaState', 'personaStateId', 'personaStateFlags',
         ];
         $this->assertObjectHasAttributes($attributes, $friendsList[0]);
 
         $attributes = [
-            'locCountryCode', 'locStateCode', 'locCityId', 'location'
+            'locCountryCode', 'locStateCode', 'locCityId', 'location',
         ];
         $this->assertObjectHasAttributes($attributes, $friendsList[0]);
 
@@ -75,7 +75,7 @@ class BaseTester extends TestCase {
     protected function checkAchievementProperties($achievement)
     {
         $attributes = [
-            'apiName', 'achieved', 'name', 'description'
+            'apiName', 'achieved', 'name', 'description',
         ];
         $this->assertObjectHasAttributes($attributes, $achievement);
     }
@@ -101,7 +101,7 @@ class BaseTester extends TestCase {
     private function checkMainAppProperties($app)
     {
         $attributes = [
-            'id', 'type', 'name', 'controllerSupport', 'description', 'about', 'fullgame', 'header', 'website'
+            'id', 'type', 'name', 'controllerSupport', 'description', 'about', 'fullgame', 'header', 'website',
         ];
         $this->assertObjectHasAttributes($attributes, $app);
     }
@@ -112,7 +112,7 @@ class BaseTester extends TestCase {
     private function checkGeneralAppProperties($app)
     {
         $attributes = [
-            'pcRequirements', 'legal', 'developers', 'publishers', 'price', 'platforms', 'metacritic', 'categories', 'genres', 'release'
+            'pcRequirements', 'legal', 'developers', 'publishers', 'price', 'platforms', 'metacritic', 'categories', 'genres', 'release',
         ];
         $this->assertObjectHasAttributes($attributes, $app);
     }
@@ -185,5 +185,4 @@ class BaseTester extends TestCase {
         $this->assertObjectHasAttribute('id64', $startingMember);
         $this->assertObjectHasAttribute('id3', $startingMember);
     }
-
 }
