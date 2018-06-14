@@ -3,8 +3,8 @@
 namespace Dawoea\SteamApi\Steam;
 
 use Dawoea\SteamApi\Client;
-use Dawoea\SteamApi\Containers\Package as PackageContainer;
 use NukaCode\Database\Collection;
+use Dawoea\SteamApi\Containers\Package as PackageContainer;
 
 class Package extends Client
 {

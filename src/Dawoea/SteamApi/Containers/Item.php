@@ -45,8 +45,8 @@ class Item extends BaseContainer
         $this->attributes = $this->checkIssetField($item, 'attributes');
 
         $this->flags = [
-            'trade' => (bool) !$this->checkIssetField($item, 'flag_cannot_trade', false),
-            'craft' => (bool) !$this->checkIssetField($item, 'flag_cannot_craft', false),
+            'trade' => (bool) ! $this->checkIssetField($item, 'flag_cannot_trade', false),
+            'craft' => (bool) ! $this->checkIssetField($item, 'flag_cannot_craft', false),
         ];
         $this->custom = [
             'name'        => $this->checkIssetField($item, 'custom_name'),

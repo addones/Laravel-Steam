@@ -88,7 +88,7 @@ class Player extends BaseContainer
             'gameId'            => $this->checkIssetField($player, 'gameid'),
         ];
 
-        if (!empty(array_filter($gameDetails))) {
+        if (! empty(array_filter($gameDetails))) {
             $this->gameDetails = (new GameDetails($player));
         }
     }
@@ -105,7 +105,7 @@ class Player extends BaseContainer
                 $result->state = $countriesFile->{$this->locCountryCode}->states->{$this->locStateCode}->name;
             }
 
-            if ($this->locCityId != null && isset($countriesFile->{$this->locCountryCode}->states->{$this->locStateCode}) && !empty($countriesFile->{$this->locCountryCode}->states->{$this->locStateCode}->cities)) {
+            if ($this->locCityId != null && isset($countriesFile->{$this->locCountryCode}->states->{$this->locStateCode}) && ! empty($countriesFile->{$this->locCountryCode}->states->{$this->locStateCode}->cities)) {
                 if (isset($countriesFile->{$this->locCountryCode}->states->{$this->locStateCode}->cities->{$this->locCityId})) {
                     $result->city = $countriesFile->{$this->locCountryCode}->states->{$this->locStateCode}->cities->{$this->locCityId}->name;
                 }

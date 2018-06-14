@@ -15,7 +15,7 @@ abstract class BaseContainer
      */
     protected function checkIsNullField($app, $field, $value = null)
     {
-        return !is_null($app->$field) ? $app->$field : $value;
+        return ! is_null($app->$field) ? $app->$field : $value;
     }
 
     /**
