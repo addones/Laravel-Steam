@@ -6,19 +6,13 @@ use Orchestra\Testbench\TestCase;
 class BaseTester extends TestCase
 {
     protected $id32 = 'STEAM_1:1:31085444';
-
     protected $id64 = 76561198022436617;
-
     protected $id3 = '[U:1:62170889]';
-
     protected $altId64 = 76561197979958413;
-
     protected $appId = 620;
-
+    protected $packageId = 76710;
     protected $groupId = 103582791429521412;
-
     protected $groupName = 'Valve';
-
     protected $steamClient;
 
     public function setUp()
@@ -50,7 +44,8 @@ class BaseTester extends TestCase
     protected function checkPlayerProperties($friendsList)
     {
         $attributes = [
-            'steamId', 'steamIds', 'communityVisibilityState', 'profileState', 'lastLogoff', 'profileUrl', 'realName', 'primaryClanId', 'timecreated',
+            'steamId', 'steamIds', 'communityVisibilityState', 'profileState', 'lastLogoff', 'profileUrl', 'realName',
+            'primaryClanId', 'timecreated',
         ];
         $this->assertObjectHasAttributes($attributes, $friendsList[0]);
 
@@ -87,6 +82,11 @@ class BaseTester extends TestCase
         $this->checkNestedAppProperties($app);
     }
 
+    protected function checkPackageProperties($app)
+    {
+        $this->checkNestedPackageProperties($app);
+    }
+
     protected function checkGroupProperties($group)
     {
         $this->checkGroupMainSummaryProperties($group);
@@ -112,7 +112,8 @@ class BaseTester extends TestCase
     private function checkGeneralAppProperties($app)
     {
         $attributes = [
-            'pcRequirements', 'legal', 'developers', 'publishers', 'price', 'platforms', 'metacritic', 'categories', 'genres', 'release',
+            'pcRequirements', 'legal', 'developers', 'publishers', 'price', 'platforms', 'metacritic', 'categories',
+            'genres', 'release',
         ];
         $this->assertObjectHasAttributes($attributes, $app);
     }
@@ -132,6 +133,18 @@ class BaseTester extends TestCase
 
         $attributes = ['score', 'url'];
         $this->assertObjectHasAttributes($attributes, $app->metacritic);
+    }
+
+    /**
+     * @param $packahe
+     */
+    private function checkNestedPackageProperties($packahe)
+    {
+        $attributes = ['currency', 'initial', 'final', 'discount_percent', 'individual'];
+        $this->assertObjectHasAttributes($attributes, $packahe->price);
+
+        $attributes = ['windows', 'mac', 'linux'];
+        $this->assertObjectHasAttributes($attributes, $packahe->platforms);
     }
 
     /**
