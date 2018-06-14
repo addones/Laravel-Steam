@@ -111,4 +111,29 @@ abstract class BaseContainer
 
         return $output;
     }
+
+    protected function formatPriceObject($price, $field)
+    {
+        $price = $this->checkIssetField($price, $field, $this->getFakePriceObject());
+        $object = new \stdClass();
+        $object->currency = $price->currency;
+        $object->initial = $price->initial / 100;
+        $object->final = $price->final / 100;
+        $object->discount_percent = $price->discount_percent;
+
+        if (isset($price->individual)) {
+            $object->individual = $price->individual / 100;
+        }
+
+        return $object;
+    }
+
+    protected function getFakePriceObject()
+    {
+        $object = new \stdClass();
+        $object->initial = '0';
+        $object->final = '0';
+
+        return $object;
+    }
 }
