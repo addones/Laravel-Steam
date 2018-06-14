@@ -10,6 +10,7 @@ use Dawoea\SteamApi\Exceptions\ApiCallFailedException;
 use Dawoea\SteamApi\Exceptions\ClassNotFoundException;
 use GuzzleHttp\Exception\ClientErrorResponseException;
 use GuzzleHttp\Exception\ServerErrorResponseException;
+use Illuminate\Support\Facades\Config;
 
 /**
  * @method \Dawoea\SteamApi\Steam\News       news()
@@ -17,31 +18,22 @@ use GuzzleHttp\Exception\ServerErrorResponseException;
  * @method \Dawoea\SteamApi\Steam\User       user($steamId)
  * @method \Dawoea\SteamApi\Steam\User\Stats userStats($steamId)
  * @method \Dawoea\SteamApi\Steam\App        app()
+ * @method \Dawoea\Steamapi\Steam\Package    package()
  * @method \Dawoea\SteamApi\Steam\Group      group()
  * @method \Dawoea\SteamApi\Steam\Item       item($appId)
  */
 class Client
 {
     use SteamId;
-
     public $validFormats = ['json', 'xml', 'vdf'];
-
     protected $url = 'https://api.steampowered.com/';
-
     protected $client;
-
     protected $interface;
-
     protected $method;
-
     protected $version = 'v0002';
-
     protected $apiKey;
-
     protected $apiFormat = 'json';
-
     protected $steamId;
-
     protected $isService = false;
 
     public function __construct()
@@ -70,7 +62,6 @@ class Client
      *
      * @throws ApiArgumentRequired
      * @throws ApiCallFailedException
-     *
      * @return string
      */
     protected function setUpService($arguments = null)
@@ -160,7 +151,6 @@ class Client
      * @param \GuzzleHttp\Psr7\Request $request
      *
      * @throws \Dawoea\SteamApi\Exceptions\ApiCallFailedException
-     *
      * @return \stdClass
      */
     protected function sendRequest(Request $request)
@@ -175,7 +165,8 @@ class Client
         } catch (ClientErrorResponseException $e) {
             throw new ApiCallFailedException($e->getMessage(), $e->getResponse()->getStatusCode(), $e);
         } catch (ServerErrorResponseException $e) {
-            throw new ApiCallFailedException('Api call failed to complete due to a server error.', $e->getResponse()->getStatusCode(), $e);
+            throw new ApiCallFailedException('Api call failed to complete due to a server error.',
+                $e->getResponse()->getStatusCode(), $e);
         } catch (Exception $e) {
             throw new ApiCallFailedException($e->getMessage(), $e->getCode(), $e);
         }
@@ -260,12 +251,11 @@ class Client
 
     /**
      * @throws Exceptions\InvalidApiKeyException
-     *
      * @return string
      */
     protected function getApiKey()
     {
-        $apiKey = \Config::get('steam-api.key');
+        $apiKey = Config::get('steam-api.key');
 
         if (is_null($apiKey) || $apiKey == '' || $apiKey == []) {
             $apiKey = getenv('apiKey');
