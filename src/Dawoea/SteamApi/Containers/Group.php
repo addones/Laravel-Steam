@@ -3,9 +3,9 @@
 namespace Dawoea\SteamApi\Containers;
 
 use Dawoea\SteamApi\Client;
+use NukaCode\Database\Collection;
 use Dawoea\SteamApi\Containers\Group\Details;
 use Dawoea\SteamApi\Containers\Group\MemberDetails;
-use NukaCode\Database\Collection;
 
 class Group
 {

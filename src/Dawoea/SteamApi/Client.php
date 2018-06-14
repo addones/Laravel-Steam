@@ -2,14 +2,14 @@
 
 namespace Dawoea\SteamApi;
 
+use stdClass;
+use Exception;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Client as GuzzleClient;
 use Dawoea\SteamApi\Exceptions\ApiCallFailedException;
 use Dawoea\SteamApi\Exceptions\ClassNotFoundException;
-use Exception;
-use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientErrorResponseException;
 use GuzzleHttp\Exception\ServerErrorResponseException;
-use GuzzleHttp\Psr7\Request;
-use stdClass;
 
 /**
  * @method \Dawoea\SteamApi\Steam\News       news()
@@ -101,7 +101,7 @@ class Client
 
     protected function setUpClient(array $arguments = [])
     {
-        $versionFlag = !is_null($this->version);
+        $versionFlag = ! is_null($this->version);
         $steamUrl = $this->buildUrl($versionFlag);
 
         $parameters = [
@@ -109,7 +109,7 @@ class Client
             'format' => $this->apiFormat,
         ];
 
-        if (!empty($arguments)) {
+        if (! empty($arguments)) {
             $parameters = array_merge($arguments, $parameters);
         }
 
@@ -136,7 +136,7 @@ class Client
         libxml_use_internal_errors(true);
         $result = simplexml_load_file($steamUrl.'?'.$parameters);
 
-        if (!$result) {
+        if (! $result) {
             return;
         }
 
@@ -200,7 +200,7 @@ class Client
     public function __call($name, $arguments)
     {
         // Handle a steamId being passed
-        if (!empty($arguments) && count($arguments) == 1) {
+        if (! empty($arguments) && count($arguments) == 1) {
             $this->steamId = $arguments[0];
 
             $this->convertSteamIdTo64();

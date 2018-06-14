@@ -3,9 +3,9 @@
 namespace Dawoea\SteamApi\Steam;
 
 use Dawoea\SteamApi\Client;
+use NukaCode\Database\Collection;
 use Dawoea\SteamApi\Containers\Game;
 use Dawoea\SteamApi\Containers\Player\Level;
-use NukaCode\Database\Collection;
 
 class Player extends Client
 {
@@ -104,7 +104,7 @@ class Player extends Client
 
         // Set up the arguments
         $arguments = ['steamId' => $this->steamId];
-        if (!is_null($count)) {
+        if (! is_null($count)) {
             $arguments['count'] = $count;
         }
 

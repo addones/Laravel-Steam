@@ -3,8 +3,8 @@
 namespace Dawoea\SteamApi\Steam;
 
 use Dawoea\SteamApi\Client;
-use Dawoea\SteamApi\Containers\App as AppContainer;
 use NukaCode\Database\Collection;
+use Dawoea\SteamApi\Containers\App as AppContainer;
 
 class App extends Client
 {

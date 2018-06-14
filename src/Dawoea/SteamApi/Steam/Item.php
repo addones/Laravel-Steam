@@ -3,10 +3,10 @@
 namespace Dawoea\SteamApi\Steam;
 
 use Dawoea\SteamApi\Client;
-use Dawoea\SteamApi\Containers\Item as ItemContainer;
-use Dawoea\SteamApi\Exceptions\ApiCallFailedException;
 use Dawoea\SteamApi\Inventory;
 use NukaCode\Database\Collection;
+use Dawoea\SteamApi\Containers\Item as ItemContainer;
+use Dawoea\SteamApi\Exceptions\ApiCallFailedException;
 
 class Item extends Client
 {

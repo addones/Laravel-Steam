@@ -3,8 +3,8 @@
 namespace Dawoea\SteamApi\Steam;
 
 use Dawoea\SteamApi\Client;
-use Dawoea\SteamApi\Containers\Player as PlayerContainer;
 use Dawoea\SteamApi\Exceptions\UnrecognizedId;
+use Dawoea\SteamApi\Containers\Player as PlayerContainer;
 
 class User extends Client
 {
@@ -132,7 +132,7 @@ class User extends Client
         $this->method = __FUNCTION__;
         $this->version = 'v0001';
 
-        if (!in_array($relationship, $this->friendRelationships)) {
+        if (! in_array($relationship, $this->friendRelationships)) {
             throw new \InvalidArgumentException('Provided relationship ['.$relationship.'] is not valid.  Please select from: '.implode(', ', $this->friendRelationships));
         }
 
