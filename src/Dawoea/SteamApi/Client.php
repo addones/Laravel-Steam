@@ -6,11 +6,11 @@ use stdClass;
 use Exception;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Client as GuzzleClient;
+use Illuminate\Support\Facades\Config;
 use Dawoea\SteamApi\Exceptions\ApiCallFailedException;
 use Dawoea\SteamApi\Exceptions\ClassNotFoundException;
 use GuzzleHttp\Exception\ClientErrorResponseException;
 use GuzzleHttp\Exception\ServerErrorResponseException;
-use Illuminate\Support\Facades\Config;
 
 /**
  * @method \Dawoea\SteamApi\Steam\News       news()
