@@ -9,7 +9,7 @@ php:
 
 env:
     global:
-        - setup=basic
+        - setup=stable
 
 before_install:
     - travis_retry composer self-update
@@ -31,6 +31,4 @@ matrix:
   include:
     - php: 7.0
       env: setup=lowest
-    - php: 7.0
-      env: setup=stable
 fast_finish: true
