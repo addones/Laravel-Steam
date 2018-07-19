@@ -6,6 +6,7 @@ use stdClass;
 use Exception;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Client as GuzzleClient;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Dawoea\SteamApi\Exceptions\ApiCallFailedException;
 use Dawoea\SteamApi\Exceptions\ClassNotFoundException;
