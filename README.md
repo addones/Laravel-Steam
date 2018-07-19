@@ -4,10 +4,9 @@
     <a href="https://travis-ci.com/addones/Laravel-Steam"><img src="https://travis-ci.com/addones/Laravel-Steam.svg?branch=master" alt="Build Status"></a>
     <a href="https://github.styleci.io/repos/137112887"><img src="https://github.styleci.io/repos/137112887/shield" alt="StyleCI Status"></a>
     <a href="https://scrutinizer-ci.com/g/addones/Laravel-Steam"><img src="https://img.shields.io/scrutinizer/coverage/g/addones/Laravel-Steam.svg?style=flat-square" alt="Scrutinizer Coverage"></a>
-    <a href="https://github.com/addones/Laravel-Steam/releases"><img src="https://img.shields.io/github/release/addones/Laravel-Steam.svg?style=flat-square" alt="releases status"></a>
-    <a href="https://packagist.org/packages/addones/Laravel-Steam"><img src="https://img.shields.io/packagist/v/addones/Laravel-Steam.svg?style=flat-square"></a>
+    <a href="https://github.com/addones/Laravel-Steam/releases"><img src="https://poser.pugx.org/addones/laravel-steam/v/stable?format=flat-square" alt="releases status"></a>
     <a href="https://packagist.org/packages/addones/Laravel-Steam"><img src="https://poser.pugx.org/addones/laravel-steam/downloads?format=flat-square"></a>
-    <a href="https://github.com/addones/Laravel-Steam/blob/master/LICENSE"><img src="https://img.shields.io/github/license/addones/Laravel-Steam.svg?style=flat-square" alt="license"></a>
+    <a href="https://github.com/addones/Laravel-Steam/blob/master/LICENSE"><img src="https://poser.pugx.org/addones/laravel-steam/license?format=flat-square" alt="license"></a>
 </p>
 
 - [Installation](#installation)
