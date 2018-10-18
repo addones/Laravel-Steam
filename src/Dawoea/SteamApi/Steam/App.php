@@ -15,7 +15,7 @@ class App extends Client
         $this->interface = 'api';
     }
 
-    public function appDetails($appIds, $cc = 'us', $language = 'english')
+    public function appDetails($appIds, $cc = 'us', $language = 'en-US')
     {
         // Set up the api details
         $this->method = 'appdetails';
